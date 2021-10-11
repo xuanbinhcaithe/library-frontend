@@ -1,0 +1,88 @@
+<br>
+
+<div>
+  <button type="button" class="btn btn-gray btn-xs btn3d" (click)="exportExcel()">
+    <img src="assets/avatarDefault/Excel.jpg" style="width: 30px">
+  </button>
+</div>
+
+<div class="container">
+  <span style="font-size: 20px; font-weight: bold">
+    {{board?.name}}
+  </span>
+  <span *ngFor="let i of board?.userDTOList">
+    <img *ngIf="i.avatarUrl != null" [src]="i?.avatarUrl || ''" class="avata tooltipr" alt="Avatar"
+         style="width: 30px; border-radius: 50%" data-toggle="tooltip" data-placement="top" [title]="i.username || ''">
+    <img *ngIf="i.avatarUrl == null" src="./assets/avatarDefault/avatar.jpg" class="avatar tooltipr" alt="Avatar"
+         style="width: 30px; border-radius: 50%" data-toggle="tooltip" data-placement="top" [title]="i.username || ''">
+  </span>
+  <button type="button" class="btn btn-gray btn-xs btn3d" (click)="invite()"><i
+    class="fa color-light fa-plus" aria-hidden="true"></i> Mời
+  </button>
+</div>
+
+<div class="scrollmenu">
+
+  <div cdkDropListGroup>
+
+    <div cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+      <div class="example-container1  card" *ngFor="let t of tab" cdkDrag>
+        <div align="center">
+          {{t.name}}
+          <div class="btn-group dropdown">
+            <button type="button" class="btn btn-default" data-toggle="dropdown" aria-expanded="false"
+                    style="width: 30px; height: 30px;"><i class="fa fa-align-left"></i></button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" (click)="showFormUpdateTab(t)"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Sửa</a>
+              <a class="dropdown-item" (click)="removeTab(t.id)"><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;Xoá</a>
+              <a class="dropdown-item" (click)="moveTab(t.id)"><i class="fa fa-plane" aria-hidden="true"></i>&nbsp;Di
+                chuyển tới bảng</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item">Separated link</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="example-container" *ngFor="let t of tab">
+      <div
+        cdkDropList
+        [cdkDropListData]="t.cardDTOList"
+        class="example-list listCard"
+        (cdkDropListDropped)="drop1($event)">
+        <div class="example-box card" *ngFor="let c of t.cardDTOList" cdkDrag (dblclick)="detailCard(t.id, c.id)">
+          <div class="">
+            {{c.name}}
+          </div>
+
+          <div class="btn-group dropdown">
+            <button type="button" class="btn btn-default" data-toggle="dropdown" aria-expanded="false"
+                    style="width: 30px; height: 30px;"><i class="fa fa-pencil" aria-hidden="true"></i>
+            </button>
+            <div class="dropdown-menu" style="position: relative!important;">
+              <a class="dropdown-item" (click)="removeCard(c.id)"><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;Xoá</a>
+              <a class="dropdown-item" (click)="moveCard(c, t , tab)"><i class="fa fa-plane" aria-hidden="true"></i>&nbsp;Di
+                chuyển</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item">Separated link</a>
+            </div>
+          </div>
+
+        </div>
+        <button type="button" class="btn btn-default btn-xs btn3d" (click)="addNewCard(t.id)"><i
+          class="fa color-light fa-plus" aria-hidden="true"></i>Thêm thẻ
+        </button>
+      </div>
+
+    </div>
+
+    <div class="example-container">
+      <!--      <br>-->
+      <button type="button" class="btn btn-default btn-xs btn3d" (click)="showFormAddNewTab()"><i
+        class="fa color-light fa-plus" aria-hidden="true"></i>Thêm các danh sách khác
+      </button>
+    </div>
+  </div>
+</div>

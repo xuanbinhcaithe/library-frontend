@@ -1,0 +1,186 @@
+<div class="container light-style flex-grow-1 container-p-y wrapper" style="font-size: 12px">
+
+  <div class="card overflow-hidden">
+    <div class="row no-gutters row-bordered row-border-light">
+      <div class="col-md-3 pt-0">
+        <div class="list-group list-group-flush account-settings-links">
+          <a class="list-group-item list-group-item-action active" data-toggle="list"
+             href="#account-general"><i class="fa fa-home" aria-hidden="true"></i>Thông tin chung</a>
+          <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password"><i
+            class="fa fa-calendar-o" aria-hidden="true"></i>Ngày</a>
+          <a class="list-group-item" (click)="createWork()"><i class="fa fa-check-square" aria-hidden="true"></i>Việc
+            cần làm</a>
+          <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-social-links">Social
+            links</a>
+          <a class="list-group-item list-group-item-action" data-toggle="list"
+             href="#account-connections">Connections</a>
+          <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-notifications">Notifications</a>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="tab-content">
+          <div class="container">
+            <div><label class="form-label"><b>Thành viên</b></label></div>
+            <span *ngFor="let i of card?.userDTOList">
+             <img *ngIf="i.avatarUrl != null" [src]="i?.avatarUrl || ''" class="avata tooltipr" alt="Avatar"
+                  style="width: 30px; border-radius: 50%" data-toggle="tooltip" data-placement="top"
+                  [title]="i.username || ''">
+              <img *ngIf="i.avatarUrl == null" src="./assets/avatarDefault/avatar.jpg" class="avatar tooltipr"
+                   alt="Avatar"
+                   style="width: 30px; border-radius: 50%" data-toggle="tooltip" data-placement="top"
+                   [title]="i.username || ''">
+              </span>
+            <button type="button" class="btn btn-gray btn-xs btn3d" (click)="invite()"><i
+              class="fa color-light fa-plus" aria-hidden="true"></i> Mời
+            </button>
+          </div>
+
+
+          <!--          info card-->
+          <div class="tab-pane fade active show" id="account-general">
+            <div class="card-body">
+              <div class="form-group">
+                <label class="form-label"><b>Tên thẻ</b></label>
+                <input type="text" style="font-size: 12px" class="form-control mb-1 serBorder" [(ngModel)]="name"
+                       (keyup.enter)="changeName()">
+                <div *ngIf="isChageNameSucc" class="alert alert-primary" role="alert">
+                  {{messageSaveName}}
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label"><b>Mô tả</b></label>
+                <textarea style="font-size: 12px" rows="4" type="text" class="form-control serBorder"
+                          [(ngModel)]="description"
+                          (keyup.enter)="changeDec()"></textarea>
+                <div *ngIf="isChageDecSucc" class="alert alert-primary" role="alert">
+                  {{messageSaveDec}}
+                </div>
+              </div>
+
+              <div class="form-group" *ngIf="lstWork.length > 0">
+                <label class="form-label"><b>Danh sách việc cần làm</b></label>
+
+                <div *ngFor="let w of lstWork">
+                  <div class="card-body">
+                  <span class="row justify-content-between align-items-center">
+                    <span class="col-md-2 color--heading"><i class="fa fa-check-circle-o" aria-hidden="true"></i></span>
+                    <span class="col-6 color--text">
+                      {{w.name}}
+                    </span>
+                    <span class="col-2 color--text">
+                        <button type="button" class="btn btn-gray btn-xs btn3d" (click)="editWork(w)">
+                          <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                    <span class="col-2 color--text">
+                        <button type="button" class="btn btn-gray btn-xs btn3d" (click)="removeWork(w.id)">
+                          <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                  </span>
+
+                  </div>
+                  <div *ngIf="w.workDTOList.length > 0">
+                    <mat-progress-bar mode="determinate" [value]="getvalue(w)"></mat-progress-bar>
+                  </div>
+
+                  <!--                  list muc con trong work-->
+                  <span *ngIf="w.workDTOList.length > 0">
+                    <div *ngFor="let e of w.workDTOList">
+                  <div class="card-body" style="margin-left: 50px; padding: 0.5rem!important;">
+                  <div class="row">
+                    <div class="col-lg-2"><input type="checkbox" [(ngModel)]="e.status" class="switcher-input"
+                                                 [checked]="e.status" (change)="updateStatus(e, $event)"></div>
+                    <div class="col-lg-7">
+                      {{e.name}}
+                    </div>
+                    <div class="col-lg-2" style="float: right">
+                      <div class="btn-group dropdown">
+            <button type="button" class="btn btn-default" data-toggle="dropdown" aria-expanded="false"
+                    style="width: 30px; height: 30px;"><i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+            </button>
+            <div class="dropdown-menu" style="position: relative!important;">
+              <a class="dropdown-item" (click)="editElementWork(w.id, e)">&nbsp;<i class="fa fa-pencil"
+                                                                                   aria-hidden="true"></i>Sửa</a>
+              <a class="dropdown-item" (click)="deleteElementWork(e.id)"><i class="fa fa-trash-o"
+                                                                            aria-hidden="true"></i>Xoá</a>
+              <a class="dropdown-item" (click)="convertToCard(e.id)"><i class="fa fa-arrows" aria-hidden="true"></i>Chuyển sang thẻ</a>
+            </div>
+          </div>
+
+
+                    </div>
+
+                  </div>
+                  </div>
+                    </div>
+                  </span>
+
+
+                  <span class="row justify-content-between align-items-center">
+                    <span class="col-8 color--text">
+                    <button type="button" style="font-size: 12px; margin-left: 80px"
+                            class="btn btn-outline-primary btn-xs btn3d"
+                            (click)="addNewElementWork(w.id)">
+                      <i class="fa fa-plus" aria-hidden="true"></i> Thêm một mục
+                    </button>
+                  </span>
+                  </span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+          <!--          date card-->
+          <div class="tab-pane fade" id="account-change-password">
+            <div class="card-body">
+              <div class="form-group">
+                <label class="form-label"><b>Thời gian bắt đầu</b></label>
+                <div>
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="startDate1" placeholder="Choose a date" [(ngModel)]="startDate"
+                           ngDefaultControl>
+                    <mat-datepicker-toggle matSuffix [for]="startDate1"></mat-datepicker-toggle>
+                    <mat-datepicker #startDate1 [(ngModel)]="startDate" ngDefaultControl></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label"><b>Thời gian kết thúc</b></label>
+                <div>
+                  <mat-form-field>
+                    <input (dateInput)="log()" matInput [matDatepicker]="picker" placeholder="Choose a date"
+                           [(ngModel)]="endDate" ngDefaultControl>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker [(ngModel)]="endDate" ngDefaultControl></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label"><b>Thông báo trước ngày</b></label>
+                <div>
+                  <input type="text" style="font-size: 12px; width: 50%" class="form-control mb-1"
+                         [(ngModel)]="notifyDay" (keypress)="numberOnly($event)">
+                </div>
+              </div>
+              <div *ngIf="isChageDateSucc" class="alert alert-primary" role="alert">
+                {{messageSaveDate}}
+              </div>
+              <div>
+                <button type="button" class="btn btn-success waves-effect waves-light m-b-5" (click)="saveDate()">
+                  Lưu
+                </button>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

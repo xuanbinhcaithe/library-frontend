@@ -1,1 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
+/*!* You can add global styles to this file, and also import other style files *!*/
+
+/*!*@import 'https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css';*!*/
+/*!*@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';*!*/
+/*!*@import '~font-awesome/css/font-awesome.css';*!*/
+
+/*html, body { height: 100%; }*/
+/*body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
+
+/*.btn3d {*/
+/*  transition:all .08s linear;*/
+/*  position:relative;*/
+/*  outline: none;*/
+/*  -moz-outline-style:none;*/
+/*  border:0px;*/
+/*  margin-right:2px;*/
+/*  margin-top:2px;*/
+/*}*/
+/*.btn3d:focus {*/
+/*  outline: none;*/
+/*  -moz-outline-style:none;*/
+/*}*/
+/*.btn3d:active {*/
+/*  top:4px;*/
+/*  outline: none;*/
+/*}*/
+/*.btn-default {*/
+/*  box-shadow:0 0 0 0.5px #ebebeb inset, 0 0 0 1px rgba(255,255,255,0.15) inset, 0 4px 0 0 #adadad, 0 4px 0 1px rgba(0,0,0,0.4), 0 4px 4px 0.5px rgba(0,0,0,0.5);*/
+/*  background-color:#fff;*/
+/*  outline: none;*/
+/*}*/
+/*.btn-primary {*/
+/*  box-shadow:0 0 0 0.5px #ebebeb inset, 0 0 0 1px rgba(255,255,255,0.15) inset, 0 4px 0 0 #adadad, 0 4px 0 1px rgba(0,0,0,0.4), 0 4px 4px 0.5px rgba(0,0,0,0.5);*/
+/*  background-color:#428bca;*/
+/*  outline: none;*/
+/*}*/
+/*.btn-success {*/
+/*  box-shadow:0 0 0 0.5px #ebebeb inset, 0 0 0 1px rgba(255,255,255,0.15) inset, 0 4px 0 0 #adadad, 0 4px 0 1px rgba(0,0,0,0.4), 0 4px 4px 0.5px rgba(0,0,0,0.5);*/
+/*  background-color:#5cb85c;*/
+/*  outline: none;*/
+/*}*/
+/*.btn-info {*/
+/*  box-shadow:0 0 0 0.5px #ebebeb inset, 0 0 0 1px rgba(255,255,255,0.15) inset, 0 4px 0 0 #adadad, 0 4px 0 1px rgba(0,0,0,0.4), 0 4px 4px 0.5px rgba(0,0,0,0.5);*/
+/*  background-color:#5bc0de;*/
+/*  outline: none;*/
+/*}*/
+/*.btn-warning {*/
+/*  box-shadow:0 0 0 0.5px #ebebeb inset, 0 0 0 1px rgba(255,255,255,0.15) inset, 0 4px 0 0 #adadad, 0 4px 0 1px rgba(0,0,0,0.4), 0 4px 4px 0.5px rgba(0,0,0,0.5);*/
+/*  background-color:#f0ad4e;*/
+/*  outline: none;*/
+/*}*/
+/*.btn-danger {*/
+/*  box-shadow:0 0 0 0.5px #ebebeb inset, 0 0 0 1px rgba(255,255,255,0.15) inset, 0 4px 0 0 #adadad, 0 4px 0 1px rgba(0,0,0,0.4), 0 4px 4px 0.5px rgba(0,0,0,0.5);*/
+/*  background-color:#c63702;*/
+/*  outline: none;*/
+/*}*/

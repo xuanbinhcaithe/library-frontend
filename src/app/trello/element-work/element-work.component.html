@@ -1,0 +1,16 @@
+
+<form role="form" class="form-horizontal" [formGroup]="form">
+  <div class="form-group">
+    <label class="col-sm-8" for="inputSubject"><span class="glyphicon glyphicon-list-alt"></span>Tên mục</label>
+    <div class="col-sm-12"><input type="text" class="form-control" id="inputSubject" formControlName="name" ></div>
+  </div>
+  <div *ngIf="isSaveFail"  class="alert alert-danger" role="alert">
+    {{message}}
+  </div>
+</form>
+<div align="center">
+  <button type="button" class="btn btn-primary btn-xs btn3d" (click)="saveNewElementWork()">Save</button>
+  <button type="button" class="btn btn-default btn-xs btn3d" (click)="closeModal()">Huỷ</button>
+</div>
+
+

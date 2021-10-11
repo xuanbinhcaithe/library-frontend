@@ -1,0 +1,29 @@
+<hr>
+<div class="container">
+  <button type="button" class="btn btn-default btn-xs btn3d" (click)="showFormAddNewBoard()">Thêm mới bảng công việc
+  </button>
+  <br><br>
+  <div class="row">
+    <div class="col-md-4 col-xl-3" *ngFor="let b of listBoard">
+      <div class="card bg-c-green order-card" style="width: 220px; height: 220px" (dblclick)="boardDetail(b.id)">
+        <div class="card-block">
+          <h6 class="m-b-20"><b>{{b.name}}</b></h6>
+          <div class="m-b-0">
+            <span>
+              Người tạo: <img *ngIf="b.createdByAvatar != null" [src]="b.createdByAvatar" class="avatar" alt="Avatar"
+                              style="width: 40px; border-radius: 50%">
+            </span>
+            <span>
+             {{b.createdByName}}
+            </span>
+          </div>
+          <p class="m-b-0">Ngày tạo: {{b.createDate | date:'dd/MM/yyyy' }}</p>
+          <p class="m-b-0">Số thành viên: {{b.countUser}}</p>
+          <i class="fa fa-trash" aria-hidden="true" (click)="removeBoard(b.id)"></i>
+          <i class="fa fa-pencil" aria-hidden="true" style="float: right" (click)="showFormUpdateBoard(b)"></i>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

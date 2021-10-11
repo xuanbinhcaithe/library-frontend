@@ -1,0 +1,11 @@
+
+<h4 align="center">Bạn có muốn xoá?</h4>
+<div *ngIf="isDeleteFail"  class="alert alert-danger" role="alert">
+  {{message}}
+</div>
+<div align="center">
+  <button type="button" class="btn btn-primary btn-xs btn3d" (click)="remove()">Xoá</button>
+  <button type="button" class="btn btn-default btn-xs btn3d" (click)="closeModal()">Huỷ</button>
+</div>
+
+

@@ -1,0 +1,18 @@
+
+
+<form role="form" class="form-horizontal">
+  <div>
+    <label>Tên bảng</label>
+    <select class="form-control" [(ngModel)]="boardMove"   [ngModelOptions]="{standalone: true}">
+      <option *ngFor="let b of listBoard" [value]="b.id" >{{b.name}}</option>
+    </select>
+  </div>
+  <div *ngIf="isMoveFail" class="alert alert-danger" role="alert">
+    Di chuyển không thành công!
+  </div>
+</form>
+<br>
+<div align="center">
+  <button type="button" class="btn btn-primary btn-xs btn3d" (click)="move()">Di chuyển</button>
+  <button type="button" class="btn btn-default btn-xs btn3d" (click)="closeModal()">Huỷ</button>
+</div>

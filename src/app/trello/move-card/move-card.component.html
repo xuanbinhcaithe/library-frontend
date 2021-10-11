@@ -1,0 +1,31 @@
+
+
+<form role="form" class="form-horizontal">
+  <div>
+    <label>Tên bảng</label>
+    <select class="form-control" [(ngModel)]="boardMove"   [ngModelOptions]="{standalone: true}" (change)="onChangeBoard()">
+      <option *ngFor="let b of lstBoard" [value]="b.id" >{{b.name}}</option>
+    </select>
+  </div>
+
+  <div>
+  <label for="nameList">Tên danh sách</label>
+  <select class="form-control" id="nameList" [(ngModel)]="tabMove" [ngModelOptions]="{standalone: true}" (change)="onChangTab()">
+    <option  *ngFor="let t of tab" [value]="t.id" >{{t.name}}</option>
+  </select>
+  </div>
+
+  <div>
+  <label for="order">Vị trí</label>
+  <select class="form-control" id="order" [(ngModel)]="orderMove" [ngModelOptions]="{standalone: true}">
+    <option *ngFor="let o of lstOrder" [value]="o.cardOrder">{{o.cardOrder}}</option>
+  </select>
+  </div>
+  <div *ngIf="isMoveFail" class="alert alert-danger" role="alert">
+    Di chuyển không thành công!
+  </div>
+</form>
+<div align="center">
+  <button type="button" class="btn btn-primary btn-xs btn3d" (click)="move()">Di chuyển</button>
+  <button type="button" class="btn btn-default btn-xs btn3d" (click)="closeModal()">Huỷ</button>
+</div>

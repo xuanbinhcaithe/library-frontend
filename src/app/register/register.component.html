@@ -1,0 +1,21 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <form [formGroup]="registerForm">
+      <input type="text" id="username" class="fadeIn second" name="username" placeholder="username" formControlName="username">
+      <input type="text" id="email" class="fadeIn third" name="email" placeholder="email" formControlName="email">
+      <input type="text" id="phone" class="fadeIn second" name="phone" placeholder="phone" formControlName="phone">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" formControlName="password">
+      <div *ngIf="isShowMessage"  class="alert alert-danger" role="alert">
+        {{message}}
+      </div>
+      <div *ngIf="isRegisterSuccess" class="alert alert-primary" role="alert">
+        {{message}}
+      </div>
+      <input type="submit" class="fadeIn fourth" value="Register" (click)="register()">
+    </form>
+    <div id="formFooter">
+      <a class="underlineHover" [routerLink]="'/'">Login</a>
+    </div>
+
+  </div>
+</div>

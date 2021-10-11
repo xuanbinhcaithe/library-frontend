@@ -1,0 +1,51 @@
+<form role="form" class="form-horizontal">
+  <div class="form-group">
+    <label class="col-sm-8" for="inputSubject"><span class="glyphicon glyphicon-list-alt"></span>Tên danh sách</label>
+    <div class="col-sm-12"><input type="text" class="form-control" id="inputSubject" (change)="searchUser()"
+                                  [(ngModel)]="key" [ngModelOptions]="{standalone: true}"></div>
+  </div>
+
+
+  <div class="container scrollmenu" style="height: 300px" *ngIf="this.users.length > 0">
+    <div class="row">
+      <div class="col-lg-12 layout-spacing">
+        <div class="statbox widget box box-shadow">
+          <div class="widget-content widget-content-area">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <div id="content_2" class="tabcontent" *ngFor="let u of users">
+                  <div class="story-container-2">
+                    <div class="single-story">
+                      <div class="story-dp unseen">
+                        <img [src]="u.avatarUrl" *ngIf="u.avatarUrl !== null">
+                        <img src="assets/avatarDefault/avatar.jpg" *ngIf="u.avatarUrl == null">
+                      </div>
+                      <div class="story-author">
+                        <p class="name">{{u.username}}</p>
+                      </div>
+                      <div style="margin-right: 10px">
+                        &nbsp;&nbsp;<button type="button" class="btn btn-primary btn-xs btn3d" (click)="addUser(u.id)">Mời</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</form>
+<div *ngIf="inviteFail"  >
+  <div class="alert alert-danger" role="alert">
+    Thêm người dùng thất bại!
+  </div>
+</div>
+<div align="center">
+  <button type="button" class="btn btn-danger btn-xs btn3d" (click)="closeModal()">Huỷ</button>
+</div>
+
+
